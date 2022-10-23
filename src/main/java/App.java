@@ -3,6 +3,7 @@ import java.nio.channels.NonWritableChannelException;
 import java.security.KeyStore;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -48,13 +49,16 @@ public class App {
             System.out.println(journal);
         System.out.println("Is that all for today? (Y/N)");
         String decision = input.nextLine();
-if(decision.equals("y")) {
+if(decision.toLowerCase().equals("y")) {
     System.out.println("Talk to you later");
     running = false;
+} else if (!decision.toLowerCase().equals("n")) {
+    System.out.println("wrong entry");
+
 }
 
 
-}
+        }
 
 
     }
