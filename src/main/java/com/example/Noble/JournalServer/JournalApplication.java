@@ -1,6 +1,5 @@
-package com.example.Noble.Journal;
+package com.example.Noble.JournalServer;
 
-import com.example.Noble.Journal.Journal.JournalEntry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;

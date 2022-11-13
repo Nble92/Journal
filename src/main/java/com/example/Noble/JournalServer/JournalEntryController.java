@@ -1,4 +1,4 @@
-package com.example.Noble.Journal.Journal;
+package com.example.Noble.JournalServer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

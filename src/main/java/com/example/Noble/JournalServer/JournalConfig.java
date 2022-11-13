@@ -1,4 +1,4 @@
-package com.example.Noble.Journal.Journal;
+package com.example.Noble.JournalServer;
 
 
 import org.springframework.boot.CommandLineRunner;

@@ -1,13 +1,12 @@
-package com.example.Noble.Journal;
+package com.example.Noble.JournalClient;
 
-import com.example.Noble.Journal.Journal.JournalEntry;
-import com.example.Noble.Journal.Journal.JournalEntryController;
+import com.example.Noble.JournalServer.JournalEntry;
 
 import java.io.*;
 import java.util.Scanner;
 
 
-public class App {
+public class JournalCLI {
 
     //TODO: Need to figure how to reformat the entry to something more legible
     //TODO:Gotta change datastructure to DB
@@ -15,6 +14,7 @@ public class App {
     public static void main(String[] args) throws RuntimeException {
 
         JournalEntry jE;
+        ConsoleService consoleService = new ConsoleService();
 
         //initializes scanner to enable inputs to the Pad file
         Scanner input = new Scanner(System.in);
@@ -36,6 +36,9 @@ public class App {
             String meds = input.nextLine();
 
         jE = new JournalEntry(entry,mood,meds);
+        consoleService.addJe(jE);
+
+
 //            try (PrintWriter writer = new PrintWriter(new FileWriter(pad, true))) {
 //
 //                String entry = input.nextLine();
