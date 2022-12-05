@@ -32,11 +32,11 @@ public class JournalConfig {
                     "Lexapro"
 
             );
-            journalRepo.saveAll(
-
-                    List.of(one, two)
-
-            );
+//            journalRepo.saveAll(
+//
+//                    List.of(one, two)
+//
+//            );
         };
 
     }

@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class JournalCLI {
 
-    //TODO: Need to figure how to reformat the entry to something more legible
-    // TODO: gotta figure out how to prevent the app from resetting db each time.
+    // TODO: Need to figure how to reformat the entry to something more legible
+
     private ClientPrompter clientPrompter = new ClientPrompter();
     private Scanner input = new Scanner(System.in);
 
