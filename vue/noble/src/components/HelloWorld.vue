@@ -46,15 +46,15 @@ export default {
 
      addEntry(){
        journalService.addEntry(this.newEntry)    
-      
+      //this adds it to the store for it to display on the page.
+
  this.$store.commit("ADD_ENTRIES", this.newEntry);
 
  //This is needed to clear the entry object and avoid that mirroring problem
  this.newEntry =  {
         entry: "",
         mood: "",
-        meds: "",
-        date:""
+        meds: ""
       }
      },
      async converter(){

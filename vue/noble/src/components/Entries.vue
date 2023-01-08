@@ -4,8 +4,9 @@
       <th class="leftest-cell">Entry</th>
       <th class="rightest-cell">Mood</th>
     </tr>
-    <tr v-for="(entry,index) in this.$store.state.entries" v-bind:key="index">
-      <td>{{ entry.entry }}</td>
+    <!-- this allows the key to be the index of the array -->
+    <tr v-for="(entry, index) in text" v-bind:key="index">
+      <td class="preview">{{ entry.entry }}</td>
       <td>{{ entry.mood }}</td>
     </tr>
   </table>
@@ -15,33 +16,64 @@
 import journalService from "../services/JournalService";
 export default {
   created() {
-  this.populateEntries()
-
-},
-
-
+    this.populateEntries();
+  },
 
   data() {
     return {
-      entries: "",
+      // entries: [],
       entry: {
         entry: "",
         mood: "",
         meds: "",
         date: "",
       },
-    }
+    };
   },
-  methods: {
+  computed: {
+    text() {
+      const entries = this.$store.state.entries;
+      let displayedEntries = [];
+      let displayedEntry = {
+        entry: "",
+        mood: "",
+        meds: "",
+        date: "",
+      }
 
+      entries.forEach((entry) => {
+        const index = entry.entry.indexOf(".");
+        if (index !== -1) {
+          displayedEntry.entry = entry.entry.substring(0, index + 1);
+                  displayedEntries.push(displayedEntry);
+        } else if (index == -1) {
+          displayedEntry.entry = entry.entry.substring(0, 20);
+                  displayedEntries.push(displayedEntry);
+        } else {
+          displayedEntry.entry = entry.entry.substring(0, index);
+                  displayedEntries.push(displayedEntry);
+
+        }
+      });
+      return displayedEntries;
+    },
+  },
+
+  methods: {
     async populateEntries() {
-    journalService.getEntries().then(response =>{
-    this.$store.commit("SET_ENTRIES", response.data)    })
-  
-}
-  }
-}
+      journalService.getEntries().then((response) => {
+        this.$store.commit("SET_ENTRIES", response.data);
+      });
+    },
+  },
+};
 </script>
 
 <style>
+/* .preview {
+  max-width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
 </style>
