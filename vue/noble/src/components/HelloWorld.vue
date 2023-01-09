@@ -37,7 +37,6 @@ export default {
         entry: "",
         mood: "",
         meds: "",
-        date:""
       },
       entries:[]
 }
@@ -49,12 +48,12 @@ export default {
       //this adds it to the store for it to display on the page.
 
  this.$store.commit("ADD_ENTRIES", this.newEntry);
-
+ 
  //This is needed to clear the entry object and avoid that mirroring problem
  this.newEntry =  {
         entry: "",
         mood: "",
-        meds: ""
+        meds: "",
       }
      },
      async converter(){
@@ -85,10 +84,29 @@ a {
 }
 
 .entry {
-
 width: auto;
 white-space: nowrap;
  overflow-y:auto;
+ border: 10px;
+ margin: 10px;
+ padding: 10px;
+
+}
+.mood {
+width: 150px;
+white-space: nowrap;
+ overflow-y:auto;
+ border: 10px;
+ margin: 10px;
+ padding: 10px;
+
+}
+.meds {
+width: 150px;
+ border-style:dashed;
+ border: 10px;
+ margin: 10px;
+ padding: 10px;
 
 }
 </style>

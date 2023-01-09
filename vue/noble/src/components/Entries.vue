@@ -41,15 +41,20 @@ export default {
         date: "",
       }
 
+//how the preview entries are displayed on the page.
+
       entries.forEach((entry) => {
         const index = entry.entry.indexOf(".");
         if (index !== -1) {
+          displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, index + 1);
                   displayedEntries.push(displayedEntry);
         } else if (index == -1) {
+          displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, 20);
                   displayedEntries.push(displayedEntry);
         } else {
+          displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, index);
                   displayedEntries.push(displayedEntry);
 
@@ -57,6 +62,7 @@ export default {
       });
       return displayedEntries;
     },
+    
   },
 
   methods: {

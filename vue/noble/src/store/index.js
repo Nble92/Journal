@@ -9,6 +9,7 @@ export default new Vuex.Store({
     entry: {
       entry: '',
       mood: '',
+      meds: '',
       date: ''
     },
   },
