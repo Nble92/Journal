@@ -1,15 +1,17 @@
 <template>
-  <table class="display-entries">
-    <tr>
-      <th class="leftest-cell">Entry</th>
-      <th class="rightest-cell">Mood</th>
-    </tr>
-    <!-- this allows the key to be the index of the array -->
-    <tr v-for="(entry, index) in text" v-bind:key="index">
-      <td class="preview">{{ entry.entry }}</td>
-      <td>{{ entry.mood }}</td>
-    </tr>
-  </table>
+  <div class="transparency">
+    <table class="display-entries">
+      <tr>
+        <th class="leftest-cell">Entry</th>
+        <th class="rightest-cell">Mood</th>
+      </tr>
+      <!-- this allows the key to be the index of the array -->
+      <tr v-for="(entry, index) in text" v-bind:key="index">
+        <td class="preview">{{ entry.entry }}</td>
+        <td>{{ entry.mood }}</td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -41,28 +43,32 @@ export default {
         date: "",
       }
 
-//how the preview entries are displayed on the page.
+      //how the preview entries are displayed on the page.
 
       entries.forEach((entry) => {
         const index = entry.entry.indexOf(".");
         if (index !== -1) {
           displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, index + 1);
-                  displayedEntries.push(displayedEntry);
+          displayedEntries.unshift(displayedEntry);
         } else if (index == -1) {
           displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, 20);
-                  displayedEntries.push(displayedEntry);
+          displayedEntries.unshift(displayedEntry);
         } else {
           displayedEntry = entry
           displayedEntry.entry = entry.entry.substring(0, index);
-                  displayedEntries.push(displayedEntry);
+          displayedEntries.unshift(displayedEntry);
 
         }
+
       });
+      //This limits the number of entries to 5.
+      displayedEntries = displayedEntries.filter((entry, index) => index <= 5);
+
       return displayedEntries;
     },
-    
+
   },
 
   methods: {
@@ -82,4 +88,18 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 } */
+
+.transparency {
+
+  background: transparent;
+margin-top: 200px;
+margin-left: 35%;
+margin-right: auto;
+}
+
+.display-entries {
+
+  font-family: Helvetica, White;
+  size: 20vh;
+}
 </style>
