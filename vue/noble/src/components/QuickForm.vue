@@ -21,7 +21,7 @@
         v-model="newEntry.meds" />
 
     </ul>
-    <button class="btn btn-submit" v-on:click="addEntry()">
+    <button class="btn btn-submit" v-on:click="addEntry(soundFile)">
       <img class="underbutton" src="https://art.pixilart.com/1ed3967e592552f.gif" alt="">
 
     </button>
@@ -48,15 +48,28 @@ export default {
       entries: []
     }
   },
+  computed: {
+    soundFile() {
+      // try {
+      // return require('../assets/sounds/Final Fantasy VII Sound Effects - Save and Load.mp3');
+      // } catch(e) {
+      //   if (e.name !== 'ModuleNotFoundError') {
+      //     throw e
+      //   }
+      //   return '';
+      // }
+      return require('../assets/sounds/Final Fantasy VII Sound Effects - Save and Load.mp3')
+    }
+  },
   methods: {
 
-    async addEntry() {
+    async addEntry(sound) {
       journalService.addEntry(this.newEntry).then((response) => {
 
 if(response.status === 200){
 
   this.$store.commit("SHOW_MODAL")
-
+this.playSound(sound)
 }
 else{
 
@@ -78,6 +91,16 @@ else{
         meds: "",
       }
     },
+
+    playSound(sound){
+console.log(sound)
+let audio = new Audio(sound)
+// let audio = new Audio(this.soundFile);
+
+audio.play()
+
+    },
+
     async converter() {
 
       wFCCconvert.converter();
