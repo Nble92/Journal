@@ -1,15 +1,15 @@
 <template>
 
-  <div class="home" >
-    
+  <div class="home">
+
 
     <div class="components">
-    <QuickForm id="QuickForm" />
+      <QuickForm id="QuickForm" />
 
-    <entries id="entries"/>
-    <Modal/>
+      <entries id="entries" />
+      <Modal id="modal"/>
 
-  </div>
+    </div>
   </div>
 
 </template>
@@ -30,28 +30,40 @@ export default {
 
   data() {
     return {
-      showModal:false,
+      showModal: false,
 
     };
   },
-  methods:{
+  methods: {
 
-    
+
   }
 }
 </script>
 
 <style>
-
-.components{
-display: inline-block;
-top: 8%;
-left: 15%;
-z-index: 2;
-align-items: center;
+.components {
+  display: inline-block;
+  top: 8%;
+  left: 15%;
+  z-index: 2;
+  align-items: center;
 }
 
-#entries{
-display: grid;
-justify-items: center;}
+#entries {
+  display: grid;
+  justify-items: center;
+}
+
+
+
+#modal{
+
+
+z-index: 100;
+position: absolute;
+top: 8%;
+left: 15%;
+
+}
 </style>

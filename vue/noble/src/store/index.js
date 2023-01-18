@@ -12,6 +12,7 @@ export default new Vuex.Store({
       meds: '',
       date: ''
     },
+    showModal:false,
   },
   mutations: {
     SET_ENTRIES(state, data) {
@@ -21,6 +22,10 @@ export default new Vuex.Store({
       state.entries.push(data);
     },
 
+    SHOW_MODAL(state){
+
+      state.showModal = !state.showModal
+    }
 
   },
   actions: {

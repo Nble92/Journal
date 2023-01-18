@@ -35,11 +35,11 @@ ____________________________________
 <script>
 import wFCCconvert from "../services/wFCCconverter"
 import journalService from "../services/JournalService"
-import Modal from "./Modal.vue"
 export default {
-  
+
   data() {
     return {
+      show : false,
       newEntry: {
         entry: "",
         mood: "0",
@@ -55,7 +55,7 @@ export default {
 
 if(response.status === 200){
 
-this.popup();
+  this.$store.commit("SHOW_MODAL")
 
 }
 else{
@@ -84,11 +84,7 @@ else{
 
 
     },
-popup(){
 
-  Modal.showModal = !Modal.showModal
-
-}
 
   }
 }
