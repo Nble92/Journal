@@ -16,5 +16,6 @@ axios.defaults.baseURL = "http://localhost:8080/api/v1";
 new Vue({
   router,
   store,
+  style,
   render: h => h(App)
 }).$mount('#app')

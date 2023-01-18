@@ -2,8 +2,17 @@
   <div class="transparency">
     <table class="display-entries">
       <tr>
-        <th class="leftest-cell">Entry</th>
-        <th class="rightest-cell">Mood</th>
+        <th class="leftest-cell">Entry
+<br>
+-------------
+
+        </th>
+        
+        <th class="rightest-cell">Mood
+          <br>
+-------------
+        </th>
+        
       </tr>
       <!-- this allows the key to be the index of the array -->
       <tr v-for="(entry, index) in text" v-bind:key="index">
@@ -89,17 +98,16 @@ export default {
   text-overflow: ellipsis;
 } */
 
-.transparency {
+/* .transparency {
 
   background: transparent;
-margin-top: 200px;
+margin-top: 35px;
 margin-left: 35%;
 margin-right: auto;
-}
+} */
 
 .display-entries {
 
   font-family: Helvetica, White;
-  size: 20vh;
 }
 </style>

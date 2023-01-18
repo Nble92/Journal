@@ -1,74 +1,102 @@
 <template>
   <div class="hello">
+    <h1>Journal</h1>
     <p>
-      Welcome - Express your feelings, describe your mood. Track your meds.
+    Express your feelings, describe your mood. Track your meds.
     </p>
-    <h3>Journal</h3>
     <ul>
-<input class="entry" type="text" size="60"  name="entry" id="string1" placeholder="What's on your mind?" v-model="newEntry.entry" 
-/>
-
+      <label for="entry">What's on your mind?</label> 
+      <br>
+      <input class="entry" type="text" name="entry" size="25" id="string1" 
+        v-model="newEntry.entry"/>
+      <br>
+      <label for="mood">Mood from 0 - 100</label>
+      <br>
+      <input class="mood" type="number" name="mood" id="number" min="0" max="100"
+        v-model="newEntry.mood" />
+      <br>
+      <label for="med">What meds did you take?</label>
 <br>
-<input class="mood" type="number" name="number" id="number" min="0" max="100" placeholder="Mood from 0 - 100" v-model="newEntry.mood" />
-<br>
-<input class="meds" type="text" name="string2" id="string2" placeholder="What meds did you take?" v-model="newEntry.meds" />
+      <input class="meds" type="text" name="meds" size="25" id="string2"
+        v-model="newEntry.meds" />
 
     </ul>
-    <button class="btn btn-submit" v-on:click.prevent="addEntry()">
+    <button class="btn btn-submit" v-on:click="addEntry()">
       <img class="underbutton" src="https://art.pixilart.com/1ed3967e592552f.gif" alt="">
-          
-        </button>  
+
+    </button>
+    <br>
+____________________________________
+
+
   </div>
 </template>
 
 <script>
 import wFCCconvert from "../services/wFCCconverter"
 import journalService from "../services/JournalService"
+import Modal from "./Modal.vue"
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-    
-  },
-  data(){ 
+  
+  data() {
     return {
       newEntry: {
         entry: "",
-        mood: "",
+        mood: "0",
         meds: "",
       },
-      entries:[]
-}
+      entries: []
+    }
   },
-   methods: {
+  methods: {
 
-     addEntry(){
-       journalService.addEntry(this.newEntry)    
+    async addEntry() {
+      journalService.addEntry(this.newEntry).then((response) => {
+
+if(response.status === 200){
+
+this.popup();
+
+}
+else{
+
+  alert("FAIL")
+}
+
+      }
+      
+      
+      )
       //this adds it to the store for it to display on the page.
 
- this.$store.commit("ADD_ENTRIES", this.newEntry);
- 
- //This is needed to clear the entry object and avoid that mirroring problem
- this.newEntry =  {
+      this.$store.commit("ADD_ENTRIES", this.newEntry);
+
+      //This is needed to clear the entry object and avoid that mirroring problem
+      this.newEntry = {
         entry: "",
         mood: "",
         meds: "",
       }
-     },
-     async converter(){
+    },
+    async converter() {
 
-       wFCCconvert.converter();
+      wFCCconvert.converter();
 
 
-     }
-   }
+    },
+popup(){
+
+  Modal.showModal = !Modal.showModal
+
+}
+
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-*{
+* {
 
   background: transparent;
 }
@@ -77,63 +105,68 @@ export default {
 #p {
 
 
-font-size: large;
+  font-size: large;
 
 
 }
 
 .entry {
-width: 250px;
- border: 10px;
- margin: 10px;
- padding: 10px;
-background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center;
-height: 30px;
+  border-style: dashed;
+  margin: 10px;
+  padding: 10px;
+  background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
+  background-size: auto auto;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 
 
-.underbutton{
+.underbutton {
 
-height: 40px;
+  height: 40px;
 }
 
 button {
 
-border: 0ch;
+  border: 0ch;
 
 }
 
+/* input.mood{
+
+text-align: center;
+
+} */
+
 .mood {
-width: 150px;
-white-space: nowrap;
- overflow-y:auto;
- border: 10px;
- margin: 10px;
- padding: 10px;
- background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center;
+  border-style: dashed;
+  background-size: auto auto;
+  white-space: nowrap;
+  overflow-y: auto;
+  margin: 10px;
+  size: 50px;
+  padding: 010px 50px;
+  background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .meds {
-width: 150px;
- border-style:dashed;
- border: 10px;
- margin: 10px;
- padding: 10px;
-background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center;
+  border-style: dashed;
+  size: 40px;
+  margin: 10px;
+  padding: 10px;
+  background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
+  background-size: auto auto;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .hello {
 
   background: transparent;
 }
+
+
 </style>
