@@ -7,8 +7,10 @@
     <ul>
       <label for="entry">What's on your mind?</label> 
       <br>
-      <input class="entry" type="text" name="entry" size="25" id="string1" 
-        v-model="newEntry.entry"/>
+      <textarea class="entry" name="textTest" id="" cols="30" rows="4" v-model="newEntry.entry"></textarea>
+
+      <!-- <input class="entry" type="text" name="entry" size="25" id="string1" 
+        v-model="newEntry.entry"/> -->
       <br>
       <label for="mood">Mood from 0 - 100</label>
       <br>
@@ -50,26 +52,19 @@ export default {
   },
   computed: {
     soundFile() {
-      // try {
-      // return require('../assets/sounds/Final Fantasy VII Sound Effects - Save and Load.mp3');
-      // } catch(e) {
-      //   if (e.name !== 'ModuleNotFoundError') {
-      //     throw e
-      //   }
-      //   return '';
-      // }
       return require('../assets/sounds/Final Fantasy VII Sound Effects - Save and Load.mp3')
     }
   },
   methods: {
-
+ 
     async addEntry(sound) {
       journalService.addEntry(this.newEntry).then((response) => {
 
 if(response.status === 200){
 
+  this.playSound(sound)
+
   this.$store.commit("SHOW_MODAL")
-this.playSound(sound)
 }
 else{
 
@@ -134,9 +129,11 @@ audio.play()
   margin: 10px;
   padding: 10px;
   background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
-  background-size: auto auto;
+  background-size: 120% 170%;
   background-repeat: no-repeat;
   background-position: center;
+  resize:none;
+  height: auto;
 }
 
 

@@ -2,6 +2,7 @@
   <div id="app">
 
     <body>
+
       <div class="blur" style="background-image: url('https://i.imgur.com/lLfM33a.gif');">
         <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
 
@@ -31,7 +32,7 @@ export default {
   components: {
     Modal,
   },
-
+  
   computed: {
 
     showModal() {
@@ -45,6 +46,7 @@ flipModal(){
   this.$store.commit("SHOW_MODAL")
 
 }
+
 
 
 }
