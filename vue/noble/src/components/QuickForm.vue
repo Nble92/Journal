@@ -53,7 +53,10 @@ export default {
   computed: {
     soundFile() {
       return require('../assets/sounds/Final Fantasy VII Sound Effects - Save and Load.mp3')
-    }
+    },
+    // lofi(){
+    //   return require('https://www.youtube.com/watch?v=j4sJkuOPUP8')
+    // }
   },
   methods: {
  

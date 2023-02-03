@@ -3,19 +3,21 @@
 
     <body>
 
-      <div class="blur" style="background-image: url('https://i.imgur.com/lLfM33a.gif');">
-        <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
-
         <Teleport to="body">
           <!-- use the modal component, pass in the prop -->
           <modal :show="showModal" @close="flipModal()">
             <template #header>
               <h3>custom header</h3>
             </template>
-          </modal>
+          </modal> 
         </Teleport>
 
-      </div>
+
+      
+<iframe width="320" height="240" controls src="https://www.youtube.com/embed/hi1cYzaLEig"></iframe>
+
+
+
     </body>
 
     <router-view />

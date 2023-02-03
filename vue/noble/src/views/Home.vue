@@ -2,14 +2,22 @@
 
   <div class="home">
 
+    <body>
 
-    <div class="components">
-      <QuickForm id="QuickForm" />
+      <!-- <div id="bg_container">
+        <iframe id="bg" src="https://www.youtube.com/embed/j4sJkuOPUP8?&autoplay=1&mute=1" frameborder="0"></iframe>
+      </div> -->
 
-      <entries id="entries" />
-      <Modal id="modal"/>
+      <div class="components">
+        <QuickForm id="QuickForm" />
 
-    </div>
+        <entries id="entries" />
+        <Modal id="modal" />
+
+      </div>
+
+    </body>
+
   </div>
 
 </template>
@@ -42,8 +50,21 @@ export default {
 </script>
 
 <style>
+#bg_container {
+  height: 150%;
+  overflow: hidden;
+}
+
+#bg {
+  width: 150%;
+  height: 900px;
+  align-content: center;
+  
+}
+
+
+
 .components {
-  display: inline-block;
   top: 8%;
   left: 15%;
   z-index: 2;
@@ -57,13 +78,13 @@ export default {
 
 
 
-#modal{
+#modal {
 
 
-z-index: 100;
-position: absolute;
-top: 8%;
-left: 15%;
+  z-index: 100;
+  position: absolute;
+  top: 8%;
+  left: 15%;
 
 }
 </style>
