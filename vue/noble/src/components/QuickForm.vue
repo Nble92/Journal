@@ -12,7 +12,7 @@
       <!-- <input class="entry" type="text" name="entry" size="25" id="string1" 
         v-model="newEntry.entry"/> -->
       <br>
-      <label for="mood">Mood from 0 - 100</label>
+      <label for="mood">Mood from 1 - 100</label>
       <br>
       <input class="mood" type="number" name="mood" id="number" min="0" max="100"
         v-model="newEntry.mood" />
@@ -59,8 +59,8 @@ export default {
     // }
   },
   methods: {
- 
     async addEntry(sound) {
+      if(this.newEntry.entry != "" && this.newEntry.mood != 0){
       journalService.addEntry(this.newEntry).then((response) => {
 
 if(response.status === 200){
@@ -68,26 +68,32 @@ if(response.status === 200){
   this.playSound(sound)
 
   this.$store.commit("SHOW_MODAL")
+  this.$store.commit("ADD_ENTRIES", this.newEntry);
+  
+  this.newEntry = {
+        entry: "",
+        mood: "",
+        meds: "",
+      }
 }
 else{
 
   alert("FAIL")
 }
+      })
+      
 
-      }
+      }     
+      else{
+
+alert("Write your thoughts in your entry and set your mood to at least 1.")
+} 
       
-      
-      )
       //this adds it to the store for it to display on the page.
 
-      this.$store.commit("ADD_ENTRIES", this.newEntry);
 
       //This is needed to clear the entry object and avoid that mirroring problem
-      this.newEntry = {
-        entry: "",
-        mood: "",
-        meds: "",
-      }
+      
     },
 
     playSound(sound){
