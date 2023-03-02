@@ -1,6 +1,6 @@
 package com.example.Noble.JournalClient;
 
-import com.example.Noble.JournalServer.JournalEntry;
+import com.example.Noble.JournalServer.Entries.JournalEntry;
 
 import java.util.Arrays;
 import java.util.Scanner;

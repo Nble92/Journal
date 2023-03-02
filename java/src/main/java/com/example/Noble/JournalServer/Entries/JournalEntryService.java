@@ -1,4 +1,4 @@
-package com.example.Noble.JournalServer;
+package com.example.Noble.JournalServer.Entries;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

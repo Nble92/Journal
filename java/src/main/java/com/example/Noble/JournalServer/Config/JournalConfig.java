@@ -1,13 +1,14 @@
-package com.example.Noble.JournalServer;
+package com.example.Noble.JournalServer.Config;
 
 
+import com.example.Noble.JournalServer.Entries.JournalEntry;
+import com.example.Noble.JournalServer.Entries.JournalRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.List;
 
 @Configuration
 public class JournalConfig {

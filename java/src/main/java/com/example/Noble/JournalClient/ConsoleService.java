@@ -1,14 +1,12 @@
 package com.example.Noble.JournalClient;
 
-import com.example.Noble.JournalServer.JournalEntry;
+import com.example.Noble.JournalServer.Entries.JournalEntry;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 
 public class ConsoleService {

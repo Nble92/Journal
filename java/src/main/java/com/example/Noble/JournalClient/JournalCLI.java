@@ -1,8 +1,5 @@
 package com.example.Noble.JournalClient;
 
-import com.example.Noble.JournalServer.JournalEntry;
-
-import java.io.*;
 import java.util.Scanner;
 
 

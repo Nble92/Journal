@@ -1,4 +1,4 @@
-package com.example.Noble.JournalServer;
+package com.example.Noble.JournalServer.Entries;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
