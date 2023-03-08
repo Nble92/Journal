@@ -1,5 +1,8 @@
-package com.example.Noble.JournalServer.User;
+package com.example.Noble.JournalServer.User.Registration;
 
+import com.example.Noble.JournalServer.User.MyUserDetails;
+import com.example.Noble.JournalServer.User.User;
+import com.example.Noble.JournalServer.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

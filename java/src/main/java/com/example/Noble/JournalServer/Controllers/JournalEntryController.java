@@ -1,5 +1,7 @@
-package com.example.Noble.JournalServer.Entries;
+package com.example.Noble.JournalServer.Controllers;
 
+import com.example.Noble.JournalServer.Entries.JournalEntry;
+import com.example.Noble.JournalServer.Entries.JournalEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

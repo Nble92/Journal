@@ -1,16 +1,17 @@
 package com.example.Noble.JournalServer.Security;
 
-import com.example.Noble.JournalServer.User.UserDetailsServiceImpl;
+import com.example.Noble.JournalServer.User.Registration.UserDetailsServiceImpl;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.dao.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.*;
 import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -39,11 +40,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll();
+//        http.authorizeRequests()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().loginPage("/login").permitAll()
+//                .and()
+//                .logout().permitAll();
+        http.csrf().disable();
+        http.authorizeRequests().anyRequest().permitAll();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 }
