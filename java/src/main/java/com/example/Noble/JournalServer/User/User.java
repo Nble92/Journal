@@ -22,6 +22,7 @@ public class User {
     private String username;
     private String password;
 
+    private String displayName;
 
     @JsonProperty("email_address")
     private String emailAddress;

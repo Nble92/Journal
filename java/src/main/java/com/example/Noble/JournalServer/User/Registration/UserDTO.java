@@ -1,5 +1,7 @@
 package com.example.Noble.JournalServer.User.Registration;
 
+import com.example.Noble.JournalServer.User.User;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -26,6 +28,19 @@ public class UserDTO {
 
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
+
+
+    public UserDTO(User user) {
+    }
+
+    public UserDTO(){
+
+    }
+
+    public UserDTO(String password, String emailAddress) {
+        this.password = password;
+        this.emailAddress = emailAddress;
+    }
 
     public String getEmailAddress() {
         return emailAddress;

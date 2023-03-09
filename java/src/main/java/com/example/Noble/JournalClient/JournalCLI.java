@@ -7,8 +7,8 @@ public class JournalCLI {
 
     // TODO: Need to figure how to reformat the entry to something more legible
 
-    private ClientPrompter clientPrompter = new ClientPrompter();
-    private Scanner input = new Scanner(System.in);
+    private final ClientPrompter clientPrompter = new ClientPrompter();
+    private final Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) throws RuntimeException {
 

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -25,4 +27,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new MyUserDetails(user);
     }
 
-}
+    //EmailAddress is the unique identifier. So I will be searching for that in the DB instead of username.
+    public UserDTO loadUserByEmail(String email)
+            throws UserNotFoundException {
+        User user = userRepo.findUserByEmail(email);
+
+            if (user == null) {
+                throw new UserNotFoundException("Could not find user");
+            }
+
+            return new UserDTO(user);
+
+        }
+
+    }
+

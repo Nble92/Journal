@@ -3,6 +3,8 @@ package com.example.Noble.JournalServer.User;
 import com.example.Noble.JournalServer.User.Registration.IUserService;
 import com.example.Noble.JournalServer.User.Registration.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,12 +17,14 @@ import java.util.Objects;
 public class UserService implements IUserService {
     private final UserRepo userRepo;
 
-    public UserService(UserRepo userRepo) {
+    private PasswordEncoder bcryptEncoder;
+
+    public UserService(UserRepo userRepo, PasswordEncoder bcryptEncoder) {
         this.userRepo = userRepo;
+        this.bcryptEncoder = bcryptEncoder;
     }
 
 
-    @Autowired
     public Iterable<User> getUsers() {
 //This little bastard does a select* without any damn SQL!!
         return userRepo.findAll();
@@ -46,8 +50,8 @@ public class UserService implements IUserService {
         else {
 
             User user = new User();
-            user.setUsername(userDto.getUsername());
-            user.setPassword(userDto.getPassword());
+            user.setUsername(userDto.getEmailAddress());
+            user.setPassword(bcryptEncoder.encode(userDto.getPassword()));
             user.setEmailAddress(userDto.getEmailAddress());
             user.setRole("ROLE_USER");
 
