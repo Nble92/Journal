@@ -1,14 +1,11 @@
 package com.example.Noble.JournalServer.User;
 
+import com.example.Noble.JournalServer.Entries.JournalEntry;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +25,9 @@ public class User {
     private String emailAddress;
     private String role;
     private boolean enabled;
+
+    @OneToMany
+    private Set<JournalEntry> entries;
 
 
     public User(String username, String password, String emailAddress){

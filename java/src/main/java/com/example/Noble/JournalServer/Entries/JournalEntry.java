@@ -1,5 +1,6 @@
 package com.example.Noble.JournalServer.Entries;
 
+import com.example.Noble.JournalServer.User.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -30,6 +31,10 @@ public class JournalEntry {
     private Long mood;
     @JsonProperty("meds")
     private String meds;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
 
     public JournalEntry(long id, LocalDateTime date, String entry, Long mood, String meds) {
         this.id = id;

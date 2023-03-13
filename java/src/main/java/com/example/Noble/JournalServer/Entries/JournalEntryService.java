@@ -1,9 +1,11 @@
 package com.example.Noble.JournalServer.Entries;
 
+import com.example.Noble.JournalServer.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,16 +13,19 @@ import java.util.Objects;
 //this annotation tells spring that this class is the service layer
 public class JournalEntryService {
     private final JournalRepo journalRepo;
+    private final UserRepo userRepo;
 
-    public JournalEntryService(JournalRepo journalRepo) {
+    @Autowired
+    private Principal principal;;
+
+    public JournalEntryService(JournalRepo journalRepo, UserRepo userRepo) {
         this.journalRepo = journalRepo;
+        this.userRepo = userRepo;
     }
 
 
-    @Autowired
-    public List<JournalEntry> getJournalEntries() {
-//This little bastard does a select* without any damn SQL!!
-        return journalRepo.findAll();
+    public List<JournalEntry> getJournalEntries(String username) {
+        return journalRepo.findAllByUserName(principal.getName());
 
     }
 
