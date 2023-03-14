@@ -32,6 +32,7 @@ public class JournalEntry {
     @JsonProperty("meds")
     private String meds;
 
+    @JsonProperty("userID")
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
@@ -58,6 +59,10 @@ public class JournalEntry {
     }
 
     public JournalEntry() {
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getDate() {

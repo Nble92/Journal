@@ -2,6 +2,8 @@ package com.example.Noble.JournalServer.Controllers;
 
 import com.example.Noble.JournalServer.Entries.JournalEntry;
 import com.example.Noble.JournalServer.Entries.JournalEntryService;
+import com.example.Noble.JournalServer.User.User;
+import com.example.Noble.JournalServer.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +18,18 @@ public class JournalEntryController {
 
     private final JournalEntryService journalEntryService;
     private Principal principal;
+    private UserRepo userRepo;
 
     //Dependency injection. This instantiates the journalEntry service inside the controller's constructor without doing all the  new shit
     @Autowired
-    public JournalEntryController(JournalEntryService journalEntryService) {
+    public JournalEntryController(JournalEntryService journalEntryService, UserRepo userRepo) {
         this.journalEntryService = journalEntryService;
+        this.userRepo = userRepo;
     }
 
     @GetMapping
     @PreAuthorize("isAuthenticated()")
-    public List<JournalEntry> getJournalEntries(@RequestParam String username) {
+    public List<JournalEntry> getJournalEntries(Principal principal) {
 
         return journalEntryService.getJournalEntries(principal.getName());
 
@@ -33,7 +37,8 @@ public class JournalEntryController {
 
     @PostMapping
     @PreAuthorize("isAuthenticated()")
-    public void newEntry(@RequestBody JournalEntry entry) {
+    public void newEntry(@RequestBody JournalEntry entry,Principal principal) {
+        entry.setUser(userRepo.getUserByUsername(principal.getName()));
         journalEntryService.addNewEntry(entry);
 
     }

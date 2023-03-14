@@ -45,7 +45,7 @@ export default {
       newEntry: {
         entry: "",
         mood: "0",
-        meds: "",
+        meds: ""
       },
       entries: []
     }
@@ -61,7 +61,9 @@ export default {
   methods: {
     async addEntry(sound) {
       if(this.newEntry.entry != "" && this.newEntry.mood != 0){
-      journalService.addEntry(this.newEntry,this.$store.state.token).then((response) => {
+      journalService
+      .addEntry(this.newEntry,this.$store.state.token)
+      .then((response) => {
 
 if(response.status === 200){
 

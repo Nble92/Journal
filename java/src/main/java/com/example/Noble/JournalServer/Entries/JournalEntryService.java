@@ -2,6 +2,7 @@ package com.example.Noble.JournalServer.Entries;
 
 import com.example.Noble.JournalServer.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,8 +16,7 @@ public class JournalEntryService {
     private final JournalRepo journalRepo;
     private final UserRepo userRepo;
 
-    @Autowired
-    private Principal principal;;
+
 
     public JournalEntryService(JournalRepo journalRepo, UserRepo userRepo) {
         this.journalRepo = journalRepo;
@@ -25,11 +25,13 @@ public class JournalEntryService {
 
 
     public List<JournalEntry> getJournalEntries(String username) {
-        return journalRepo.findAllByUserName(principal.getName());
+
+        return journalRepo.findAllByUserName(username);
 
     }
 
     public void addNewEntry(JournalEntry entry) {
+
         journalRepo.save(entry);
         System.out.println(entry);
     }
