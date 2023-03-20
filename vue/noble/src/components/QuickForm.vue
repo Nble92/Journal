@@ -1,6 +1,8 @@
 <template>
+  
   <div class="hello">
-    <h1>Journal</h1>
+
+    <h1>LO.FI</h1>
     <p>
     Express your feelings, describe your mood. Track your meds.
     </p>
@@ -28,6 +30,9 @@
 
     </button>
     <br>
+    <!-- <button class="btn btn-submit"  v-on:click="logout()">
+      LOGOUT
+    </button> -->
 ____________________________________
 
 
@@ -35,7 +40,6 @@ ____________________________________
 </template>
 
 <script>
-import wFCCconvert from "../services/wFCCconverter"
 import journalService from "../services/JournalService"
 export default {
 
@@ -60,7 +64,7 @@ export default {
   },
   methods: {
     async addEntry(sound) {
-      if(this.newEntry.entry != "" && this.newEntry.mood != 0){
+      if(this.newEntry.entry != "" && this.newEntry.mood != 0 && this.newEntry.mood <= 100){
       journalService
       .addEntry(this.newEntry,this.$store.state.token)
       .then((response) => {
@@ -88,7 +92,7 @@ else{
       }     
       else{
 
-alert("Write your thoughts in your entry and set your mood to at least 1.")
+alert("Write your thoughts in your entry and set your mood from 1 - 100.")
 } 
       
       //this adds it to the store for it to display on the page.
@@ -107,12 +111,12 @@ audio.play()
 
     },
 
-    async converter() {
+logout(){
 
-      wFCCconvert.converter();
+this.$store.commit("LOGOUT")
+this.$router.push("/login");
 
-
-    },
+}
 
 
   }

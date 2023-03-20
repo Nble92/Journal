@@ -31,7 +31,7 @@ public class JournalEntryController {
     @PreAuthorize("isAuthenticated()")
     public List<JournalEntry> getJournalEntries(Principal principal) {
 
-        return journalEntryService.getJournalEntries(principal.getName());
+        return journalEntryService.getJournalEntries(userRepo.getUserByUsername(principal.getName()).getId());
 
     }
 

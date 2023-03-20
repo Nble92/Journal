@@ -4,6 +4,8 @@ import com.example.Noble.JournalServer.User.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -26,8 +28,10 @@ public class JournalEntry {
     private LocalDateTime date = LocalDateTime.now();
     @JsonProperty("entry")
     private String entry;
-    @JsonProperty("mood")
 
+    @Max(100)
+    @Min(0)
+    @JsonProperty("mood")
     private Long mood;
     @JsonProperty("meds")
     private String meds;

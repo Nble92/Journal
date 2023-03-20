@@ -19,19 +19,7 @@ export default {
 
 getEntries(){
 
-return axios.get('/journal', {
-  auth: {
-    username:'noble',
-    password:'Spartan117'
-    
-    
-            },
-    headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-    }
-    
-})
+return axios.get('/journal')
 
 }
     

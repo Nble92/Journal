@@ -82,7 +82,7 @@ export default {
 
   methods: {
     async populateEntries() {
-      journalService.getEntries().then((response) => {
+      await journalService.getEntries().then((response) => {
         this.$store.commit("SET_ENTRIES", response.data);
       });
     },

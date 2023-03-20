@@ -1,20 +1,26 @@
 <template>
   <div id="app">
+    <title>Lo.Fi</title>
+    <nav>
+      <button class="btn btn-submit" v-show="loggIN" v-on:click="logout()">
+        [LOGOUT]
+      </button>
+    </nav>
 
     <body>
 
-        <Teleport to="body">
-          <!-- use the modal component, pass in the prop -->
-          <modal :show="showModal" @close="flipModal()">
-            <template #header>
-              <h3>custom header</h3>
-            </template>
-          </modal> 
-        </Teleport>
+      <Teleport to="body">
+        <!-- use the modal component, pass in the prop -->
+        <modal :show="showModal" @close="flipModal()">
+          <template #header>
+            <h3>custom header</h3>
+          </template>
+        </modal>
+      </Teleport>
 
 
-      
-<iframe width="320" height="240" controls src="https://www.youtube.com/embed/hi1cYzaLEig"></iframe>
+
+      <iframe width="320" height="240" controls src="https://www.youtube.com/embed/hi1cYzaLEig"></iframe>
 
 
 
@@ -22,9 +28,6 @@
 
     <router-view />
   </div>
-
-
-
 </template>
 <script>
 import Modal from './components/Modal.vue';
@@ -34,25 +37,37 @@ export default {
   components: {
     Modal,
   },
-  
+
   computed: {
 
     showModal() {
 
       return this.$store.state.showModal
+    },
+    loggIN() {
+
+      return this.$store.state.loggedIn
     }
+
   },
-methods:{
-flipModal(){
+  methods: {
+    flipModal() {
 
-  this.$store.commit("SHOW_MODAL")
+      this.$store.commit("SHOW_MODAL")
 
-}
+    },
+    logout() {
+
+      this.$store.commit("LOGOUT")
+      this.$router.push("/login");
+
+
+    }
 
 
 
-}
-  
+  }
+
 }
 </script>
 <style >

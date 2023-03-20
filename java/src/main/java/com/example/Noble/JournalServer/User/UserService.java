@@ -50,6 +50,7 @@ public class UserService implements IUserService {
         else {
 
             User user = new User();
+            user.setDisplayName(userDto.getDisplayName());
             user.setUsername(userDto.getEmailAddress());
             user.setPassword(bcryptEncoder.encode(userDto.getPassword()));
             user.setEmailAddress(userDto.getEmailAddress());

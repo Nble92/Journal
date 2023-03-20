@@ -1,9 +1,7 @@
 <template>
   <div class="hello">
-    <h1>Journal</h1>
-    <p>
-      Express your feelings, describe your mood. Track your meds.
-    </p>
+    <h1>LO.FI</h1>
+  
     <ul>
       <label for="username">Email</label>
       <br>
@@ -16,8 +14,7 @@
 
     </ul>
     <button class="btn btn-submit" v-on:click="login()">
-      <img class="underbutton" src="https://art.pixilart.com/1ed3967e592552f.gif" alt="">
-
+[LOGIN]
 
     </button>
     <br>
@@ -147,6 +144,12 @@ button {
 .hello {
 
   background: transparent;
+}
+
+button
+{
+  background-image: url(https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d2042f0d1983300.png);
+
 }
 </style>
   

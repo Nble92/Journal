@@ -4,6 +4,9 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
 /*
  * The authorization header is set for axios when you login but what happens when you come back or
  * the page is refreshed. When that happens you need to check for the token in local storage and if it
@@ -31,6 +34,7 @@ export default new Vuex.Store({
     showModal:false,      
     token: currentToken || '',
     user: currentUser || {},
+    loggedIn:false
   },
   mutations: {
     SET_ENTRIES(state, data) {
@@ -50,6 +54,8 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+      state.loggedIn = false
+
     },
 
     SHOW_MODAL(state){
@@ -61,8 +67,9 @@ export default new Vuex.Store({
       localStorage.setItem('token', state.token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${state.token}`
       // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-
+      state.loggedIn = true
     }
+
   },
   actions: {
   },

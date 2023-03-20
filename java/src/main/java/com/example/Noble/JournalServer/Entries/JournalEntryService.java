@@ -24,9 +24,9 @@ public class JournalEntryService {
     }
 
 
-    public List<JournalEntry> getJournalEntries(String username) {
+    public List<JournalEntry> getJournalEntries(long id) {
 
-        return journalRepo.findAllByUserName(username);
+        return journalRepo.findAllByUserID(id);
 
     }
 
