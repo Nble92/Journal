@@ -27,6 +27,7 @@ public class JournalEntry {
     private long id;
     private LocalDateTime date = LocalDateTime.now();
     @JsonProperty("entry")
+    @Column(length = 10000)
     private String entry;
 
     @Max(100)

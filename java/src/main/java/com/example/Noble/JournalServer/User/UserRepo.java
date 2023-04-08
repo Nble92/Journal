@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepo extends CrudRepository<User, Long> {
 
+    //found out that regex is used in the signature, dont want to remove the JQL yet.
     @Query("SELECT u FROM User u WHERE u.username = :username")
     User getUserByUsername(@Param("username") String username);
 

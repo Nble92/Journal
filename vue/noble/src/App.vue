@@ -20,7 +20,7 @@
 
 
 
-      <iframe width="320" height="240" controls src="https://www.youtube.com/embed/hi1cYzaLEig"></iframe>
+      <iframe width="320" height="240" src="https://www.youtube-nocookie.com/embed/GmCZtGfb53c?controls=0"/>
 
 
 
@@ -37,7 +37,15 @@ export default {
   components: {
     Modal,
   },
+  created(){
 
+    if (!this.loggIN) {
+      
+    
+      this.$store.commit("LOGOUT")
+      this.$router.push("/login");
+    }
+  },
   computed: {
 
     showModal() {

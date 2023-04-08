@@ -16,7 +16,7 @@
       </tr>
       <!-- this allows the key to be the index of the array -->
       <tr v-for="(entry, index) in text" v-bind:key="index">
-        <td class="preview">{{ entry.entry }}</td>
+        <td class="preview" @click="showMod">{{ entry.entry }}</td>
         <td>{{ entry.mood }}</td>
       </tr>
     </table>
@@ -25,7 +25,11 @@
 
 <script>
 import journalService from "../services/JournalService";
+import Modal from "./Modal.vue";
 export default {
+  props:{
+    Modal
+  },
   created() {
     this.populateEntries();
   },
@@ -81,9 +85,17 @@ export default {
   },
 
   methods: {
+    showMod(){
+
+      this.$store.commit("SHOW_MODAL")
+
+    },
     async populateEntries() {
       await journalService.getEntries().then((response) => {
         this.$store.commit("SET_ENTRIES", response.data);
+        if (response == 200) {
+          this.$store.commit
+        }
       });
     },
   },

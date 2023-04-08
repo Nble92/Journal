@@ -8,26 +8,36 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
     path: '/Login',
     name: 'Login',
     component: Login
   },
   {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  
+  {
     path: '/Register',
     name: 'Register',
     component: Registration
-  },
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token')
+  if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

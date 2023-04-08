@@ -75,7 +75,7 @@ alert("Registered!")
  }
  ).catch(error => {
    const response = error.response;
-
+alert("error")
    if (response.status === 401) {
      this.invalidCredentials = true;
    }

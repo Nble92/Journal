@@ -1,13 +1,12 @@
 <template>
-  
   <div class="hello">
 
     <h1>LO.FI</h1>
     <p>
-    Express your feelings, describe your mood. Track your meds.
+      Express your feelings, describe your mood. Track your meds.
     </p>
     <ul>
-      <label for="entry">What's on your mind?</label> 
+      <label for="entry">What's on your mind?</label>
       <br>
       <textarea class="entry" name="textTest" id="" cols="30" rows="4" v-model="newEntry.entry"></textarea>
 
@@ -16,13 +15,11 @@
       <br>
       <label for="mood">Mood from 1 - 100</label>
       <br>
-      <input class="mood" type="number" name="mood" id="number" min="0" max="100"
-        v-model="newEntry.mood" />
+      <input class="mood" type="number" name="mood" id="number" min="0" max="100" v-model="newEntry.mood" />
       <br>
       <label for="med">What meds did you take?</label>
-<br>
-      <input class="meds" type="text" name="meds" size="25" id="string2"
-        v-model="newEntry.meds" />
+      <br>
+      <input class="meds" type="text" name="meds" size="25" id="string2" v-model="newEntry.meds" />
 
     </ul>
     <button class="btn btn-submit" v-on:click="addEntry(soundFile)">
@@ -33,7 +30,7 @@
     <!-- <button class="btn btn-submit"  v-on:click="logout()">
       LOGOUT
     </button> -->
-____________________________________
+    ____________________________________
 
 
   </div>
@@ -45,7 +42,7 @@ export default {
 
   data() {
     return {
-      show : false,
+      show: false,
       newEntry: {
         entry: "",
         mood: "0",
@@ -64,63 +61,68 @@ export default {
   },
   methods: {
     async addEntry(sound) {
-      if(this.newEntry.entry != "" && this.newEntry.mood != 0 && this.newEntry.mood <= 100){
-      journalService
-      .addEntry(this.newEntry,this.$store.state.token)
-      .then((response) => {
+      if (this.newEntry.entry != "" && this.newEntry.mood != 0 && this.newEntry.mood <= 100) {
+        journalService
+          .addEntry(this.newEntry)
+          .then((response) => {
+            alert(response.status)
+            if (response.status === 200) {
 
-if(response.status === 200){
+              this.playSound(sound)
 
-  this.playSound(sound)
+              this.$store.commit("SHOW_MODAL")
+              this.$store.commit("ADD_ENTRIES", this.newEntry);
 
-  this.$store.commit("SHOW_MODAL")
-  this.$store.commit("ADD_ENTRIES", this.newEntry);
-  
-  this.newEntry = {
-        entry: "",
-        mood: "",
-        meds: "",
+              this.newEntry = {
+                entry: "",
+                mood: "",
+                meds: "",
+              }
+            }
+            else if (response.status === 401) {
+              this.logout()
+
+            }
+
+            else {
+
+              alert("Write your thoughts in your entry and set your mood from 1 - 100.")
+            }
+
+
+          }
+          )
       }
-}
-else{
-
-  alert("FAIL")
-}
-      })
-      
-
-      }     
-      else{
-
-alert("Write your thoughts in your entry and set your mood from 1 - 100.")
-} 
-      
-      //this adds it to the store for it to display on the page.
-
-
-      //This is needed to clear the entry object and avoid that mirroring problem
-      
     },
 
-    playSound(sound){
-console.log(sound)
-let audio = new Audio(sound)
-// let audio = new Audio(this.soundFile);
 
-audio.play()
+    //this adds it to the store for it to display on the page.
+
+
+    //This is needed to clear the entry object and avoid that mirroring problem
+
+
+
+    playSound(sound) {
+      console.log(sound)
+      let audio = new Audio(sound)
+      // let audio = new Audio(this.soundFile);
+
+      audio.play()
 
     },
 
-logout(){
+    logout() {
 
-this.$store.commit("LOGOUT")
-this.$router.push("/login");
+      this.$store.commit("LOGOUT")
+      this.$router.push("/login");
 
-}
+    }
 
 
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -147,7 +149,7 @@ this.$router.push("/login");
   background-size: 120% 170%;
   background-repeat: no-repeat;
   background-position: center;
-  resize:none;
+  resize: none;
   height: auto;
 }
 
@@ -198,6 +200,4 @@ text-align: center;
 
   background: transparent;
 }
-
-
 </style>

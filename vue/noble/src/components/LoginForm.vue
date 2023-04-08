@@ -17,6 +17,13 @@
 [LOGIN]
 
     </button>
+    
+    <br>
+
+   <button class="btn btn-submit" v-on:click="Register()">
+[Register]
+
+    </button>
     <br>
     ____________________________________
 
@@ -27,6 +34,12 @@
 <script>
 import UserService from "../services/UserService"
 export default {
+
+  created(){
+
+    this.$store.commit("LOGOUT")
+
+  },
 
   data() {
     return {
@@ -63,8 +76,14 @@ export default {
             this.invalidCredentials = true;
           }
         });
+    },
+    Register(){
+
+      this.$router.push("/register");
+
 
     }
+    
   }
 
 }
