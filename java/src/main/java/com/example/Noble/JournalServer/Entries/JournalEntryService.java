@@ -30,6 +30,12 @@ public class JournalEntryService {
 
     }
 
+    public JournalEntry getJournalEntry(long id, long jid){
+
+        return journalRepo.findByUserIdAndId(id,jid);
+
+    }
+
     public void addNewEntry(JournalEntry entry) {
 
         journalRepo.save(entry);

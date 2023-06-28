@@ -35,6 +35,14 @@ public class JournalEntryController {
 
     }
 
+    @GetMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public JournalEntry getJournalEntry(Principal principal, @RequestParam long id) {
+
+        return journalEntryService.getJournalEntry(userRepo.getUserByUsername(principal.getName()).getId(),id);
+
+    }
+
     @PostMapping
     @PreAuthorize("isAuthenticated()")
     public void newEntry(@RequestBody JournalEntry entry,Principal principal) {

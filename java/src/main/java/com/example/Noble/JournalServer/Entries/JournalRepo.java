@@ -16,4 +16,6 @@ public interface JournalRepo extends JpaRepository<JournalEntry, Long> {
     @Query("SELECT je FROM JournalEntry je WHERE user_id = :id")
 
     List<JournalEntry> findAllByUserID(Long id);
+
+    JournalEntry findByUserIdAndId(long userId, long id);
 }

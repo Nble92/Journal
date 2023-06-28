@@ -23,7 +23,7 @@
 
     </ul>
     <button class="btn btn-submit" v-on:click="addEntry(soundFile)">
-      <img class="underbutton" src="https://art.pixilart.com/1ed3967e592552f.gif" alt="">
+      <img class="underbutton" src="https://art.pixilart.com/1ed3967e592552f.gif" alt="Submit">
 
     </button>
     <br>
@@ -196,6 +196,19 @@ text-align: center;
   background-position: center;
 }
 
+.modal-container {
+  /* this is the box */
+  width: 300px;
+  margin: auto;
+  padding: 20px 30px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  background-image: url(https://i.imgur.com/zVHEwQd.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .hello {
 
   background: transparent;

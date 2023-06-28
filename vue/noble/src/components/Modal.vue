@@ -6,6 +6,8 @@
 
                 <div class="modal-body">
                     <!-- this is the text body in the modal box -->
+                    
+
                 </div>
                 <slot name="footer">
                 <button class="modal-default-button" @click="$emit('close')">OK</button>

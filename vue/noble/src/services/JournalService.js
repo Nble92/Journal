@@ -21,6 +21,12 @@ getEntries(){
 
 return axios.get('/journal')
 
-}
+},
+
+getEntry(){
+
+  return axios.get('/journal/id')
+  
+  }
     
 }

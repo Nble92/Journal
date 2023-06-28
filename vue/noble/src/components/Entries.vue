@@ -25,11 +25,8 @@
 
 <script>
 import journalService from "../services/JournalService";
-import Modal from "./Modal.vue";
 export default {
-  props:{
-    Modal
-  },
+  
   created() {
     this.populateEntries();
   },
@@ -93,8 +90,13 @@ export default {
     async populateEntries() {
       await journalService.getEntries().then((response) => {
         this.$store.commit("SET_ENTRIES", response.data);
-        if (response == 200) {
-          this.$store.commit
+        if (response.status == 401) {
+
+          alert("Please log back in")
+          this.$store.commit("LOGOUT")
+          this.$router.push("/login");
+
+          
         }
       });
     },

@@ -9,6 +9,7 @@
       </div> -->
 
       <div class="components">
+        <Entry/>
         <QuickForm id="QuickForm" />
 
         <entries id="entries" />
@@ -27,6 +28,7 @@
 import QuickForm from '@/components/QuickForm.vue'
 import Entries from '@/components/Entries.vue'
 import Modal from '../components/Modal.vue';
+import Entry from '../components/Entry.vue';
 
 export default {
   name: 'Home',
@@ -34,6 +36,7 @@ export default {
     QuickForm,
     Entries,
     Modal,
+    Entry,
   },
 
   data() {
