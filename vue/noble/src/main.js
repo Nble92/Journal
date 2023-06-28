@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 
 // axios.defaults.baseURL = "http://localhost:8080/api/v1";
-axios.defaults.baseURL = "http://ec2-3-224-247-73.compute-1.amazonaws.com:8080/api/v1/";
+axios.defaults.baseURL = "https://ec2-3-224-247-73.compute-1.amazonaws.com:8080/api/v1/";
 
 
 new Vue({
